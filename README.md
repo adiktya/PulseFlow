@@ -1,6 +1,6 @@
 # PulseFlow
 
-PulseFlow is a standalone sample for distributed notification and workflow orchestration.
+PulseFlow is a standalone platform for distributed notification and workflow orchestration.
 
 ## What runs where
 
