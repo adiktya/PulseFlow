@@ -1,0 +1,74 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: pulseflow-workflow
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pulseflow
+    username: pulseflow
+    password: pulseflow
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: pulseflow-workflow
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    listener:
+      ack-mode: record
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+pulseflow:
+  max-retries: 3
+  lock-ttl-seconds: 30
+  campaign:
+    scheduler-enabled: true
+    scheduler-interval-ms: 60000
+  notifications:
+    ntfy:
+      enabled: false
+      server-url: https://ntfy.sh
+      topic: pulseflow-dev-local
+  flashcache:
+    host: localhost
+    port: 7654
+    read-timeout-seconds: 10
+  kafka:
+    topics:
+      campaign-created: campaign.created
+      campaign-triggered: campaign.triggered
+      notification-send: notification.send
+      notification-retry: notification.retry
+      notification-dlq: notification.dlq
+      notification-completed: notification.completed

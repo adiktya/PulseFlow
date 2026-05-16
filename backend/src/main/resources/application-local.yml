@@ -1,0 +1,15 @@
+# Matches pulseflow/docker-compose.yml defaults (Postgres published on 5433).
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/pulseflow
+  kafka:
+    bootstrap-servers: localhost:9092
+
+pulseflow:
+  notifications:
+    ntfy:
+      enabled: true
+      topic: ${PULSEFLOW_NTFY_TOPIC:pulseflow-dev-local}
+  flashcache:
+    host: localhost
+    port: 7654

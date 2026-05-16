@@ -1,0 +1,44 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: pulseflow-gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 120s
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "http://localhost:*"
+              - "http://127.0.0.1:*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders:
+              - "*"
+            allowCredentials: false
+      routes:
+        - id: workflow-api
+          uri: ${pulseflow.workflow.base-url}
+          predicates:
+            - Path=/api/v1/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+pulseflow:
+  workflow:
+    base-url: http://localhost:8082
+  gateway:
+    security:
+      enabled: false

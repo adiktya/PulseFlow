@@ -1,0 +1,15 @@
+# In-container profile: use Docker Compose service DNS names.
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/pulseflow
+  kafka:
+    bootstrap-servers: kafka:29092
+
+pulseflow:
+  notifications:
+    ntfy:
+      enabled: true
+      topic: ${PULSEFLOW_NTFY_TOPIC:pulseflow-dev-local}
+  flashcache:
+    host: flashcache
+    port: 7654
