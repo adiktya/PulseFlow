@@ -1,4 +1,4 @@
-# PulseFlow (local)
+# PulseFlow
 
 PulseFlow is a standalone sample for distributed notification and workflow orchestration. This folder is not wired into the Insurance-Codes Gradle root.
 
