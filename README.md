@@ -1,6 +1,6 @@
 # PulseFlow
 
-PulseFlow is a standalone sample for distributed notification and workflow orchestration. This folder is not wired into the Insurance-Codes Gradle root.
+PulseFlow is a standalone sample for distributed notification and workflow orchestration.
 
 ## What runs where
 
@@ -26,8 +26,6 @@ export PF_GRADLE="$HOME/.gradle/wrapper/dists/gradle-8.10.2-bin/"*/gradle-8.10.2
 ```
 
 ## Full stack in Docker
-
-From the **Insurance-Codes** repository root (the workflow image build uses `context: ..` so both `pulseflow/backend` and `flashcache` are visible to Gradle):
 
 ```bash
 docker compose -f pulseflow/docker-compose.yml up -d --build
@@ -153,7 +151,6 @@ Workflow connects to FlashCache using `pulseflow.flashcache.host` / `pulseflow.f
 
 ## Documentation
 
-- [Product requirements](docs/PRD.md)
 - [Local architecture notes](docs/LOCAL_ARCHITECTURE.md)
 - [UI + gateway plan (implemented)](docs/PLAN_UI_AND_GATEWAY.md)
 - [FlashCache (coordination SDK + server)](../flashcache/README.md)
